@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ClientDtorequest {
 
-
+    private String fullName;
+    private String email;
 
 
 }
