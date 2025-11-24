@@ -1,15 +1,12 @@
 package com.microtech.smartshop.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Data @Builder @AllArgsConstructor @NoArgsConstructor
 public class OrederitemDtorequest {
-
+    private Long productId;
+    private int quantity;
 }
