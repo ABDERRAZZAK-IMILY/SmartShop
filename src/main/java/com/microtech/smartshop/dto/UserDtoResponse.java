@@ -2,7 +2,6 @@ package com.microtech.smartshop.dto;
 
 
 import com.microtech.smartshop.enums.Role;
-import com.microtech.smartshop.model.Client;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +19,6 @@ public class UserDtoResponse {
 
     private Role role;
 
-    private Client client;
-
+    private ClientDtoresponse client;
 
 }
