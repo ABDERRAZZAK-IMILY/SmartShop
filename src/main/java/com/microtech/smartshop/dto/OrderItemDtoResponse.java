@@ -10,6 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PaymentDtoresponse {
+public class OrderItemDtoResponse {
+
+
+    private Long id;
+    private String productName;
+    private int quantity;
+    private double unitPrice;
+    private double totalPrice;
 
 }
