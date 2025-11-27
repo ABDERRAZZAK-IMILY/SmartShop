@@ -2,6 +2,7 @@ package com.microtech.smartshop.service;
 
 import com.microtech.smartshop.dto.ClientDtoResponse;
 import com.microtech.smartshop.dto.ClientDtoRequest;
+import com.microtech.smartshop.enums.CustomerTier;
 import com.microtech.smartshop.enums.Role;
 import com.microtech.smartshop.exception.BusinessException;
 import com.microtech.smartshop.exception.ResourceNotFoundException;
@@ -48,6 +49,7 @@ public class ClientServiceImpl implements ClientService {
 
         Client client = clientMapper.toEntity(request);
         client.setUser(savedUser);
+        client.setTier(CustomerTier.BASIC);
 
         return clientMapper.toDto(clientRepository.save(client));
     }
