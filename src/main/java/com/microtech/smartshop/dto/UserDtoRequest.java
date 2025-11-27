@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 public class UserDtoRequest {
 
 
-    @NotBlank(message = "Le nom d'utilisateur est obligatoire")
+    @NotBlank(message = "Name is required")
     private String username;
 
-    @NotBlank(message = "Le mot de passe est obligatoire")
+    @NotBlank(message = "Password is required")
     private String password;
 
 
