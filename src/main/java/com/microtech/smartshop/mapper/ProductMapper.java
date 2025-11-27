@@ -3,7 +3,10 @@ package com.microtech.smartshop.mapper;
 import com.microtech.smartshop.dto.ProductDtorequest;
 import com.microtech.smartshop.dto.ProductDtoresponse;
 import com.microtech.smartshop.model.Product;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class ProductMapper {
 
     public Product toEntity(ProductDtorequest dto){

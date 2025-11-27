@@ -10,10 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ClientDtorequest {
+public class ClientDtoRequest {
 
     private String fullName;
     private String email;
+
+    private String Username;
+
+    private String Password;
+
+
 
 
 }

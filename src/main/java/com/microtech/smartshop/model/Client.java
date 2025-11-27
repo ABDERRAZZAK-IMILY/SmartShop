@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "clients")
 @Data
@@ -28,6 +31,11 @@ public class Client {
 
     private double totalSpent = 0.0;
     private int totalOrders = 0;
+
+
+    private LocalDateTime FirstOrderDate;
+
+    private  LocalDateTime LastOrderDate;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
