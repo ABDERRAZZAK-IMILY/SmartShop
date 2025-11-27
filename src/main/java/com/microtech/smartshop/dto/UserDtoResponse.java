@@ -19,6 +19,6 @@ public class UserDtoResponse {
 
     private Role role;
 
-    private ClientDtoresponse client;
+    private ClientDtoResponse client;
 
 }
