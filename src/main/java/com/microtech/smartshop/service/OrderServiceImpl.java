@@ -134,6 +134,24 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
 
+
+        if (order.getStatus() == OrderStatus.CANCELED || order.getStatus() == OrderStatus.REJECTED) {
+            throw new BusinessException("Cannot change status of an already canceled or rejected order.");
+        }
+
+        if (newStatus == OrderStatus.CANCELED || newStatus == OrderStatus.REJECTED) {
+            if (order.getStatus() != OrderStatus.PENDING) {
+                throw new BusinessException("Only PENDING orders can be canceled or rejected to restore stock.");
+            }
+
+            for (OrderItem item : order.getOrderItems()) {
+                Product product = item.getProduct();
+                product.setStock(product.getStock() + item.getQuantity());
+                productRepository.save(product);
+            }
+        }
+
+
         if (newStatus == OrderStatus.CONFIRMED) {
             if (order.getRemainingAmount() > 0) {
                 throw new BusinessException("Cannot confirm order. Remaining amount is not zero: " + order.getRemainingAmount());

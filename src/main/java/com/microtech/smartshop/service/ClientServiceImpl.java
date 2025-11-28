@@ -12,6 +12,7 @@ import com.microtech.smartshop.model.User;
 import com.microtech.smartshop.repository.ClientRepository;
 import com.microtech.smartshop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,8 @@ public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
     private final UserRepository userRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     @Override
@@ -41,7 +44,7 @@ public class ClientServiceImpl implements ClientService {
 
         User user = User.builder()
                 .username(request.getUsername())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.CLIENT)
                 .build();
 

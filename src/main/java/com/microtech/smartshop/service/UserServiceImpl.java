@@ -8,6 +8,7 @@ import com.microtech.smartshop.model.User;
 import com.microtech.smartshop.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -20,10 +21,14 @@ public class UserServiceImpl implements  UserService {
 
     private final UserRepository userRepository;
 
+    private BCryptPasswordEncoder passwordEncoder;
+
+
     @Autowired
-    public UserServiceImpl(UserMapper userMapper, UserRepository userRepository) {
+    public UserServiceImpl(UserMapper userMapper, UserRepository userRepository , BCryptPasswordEncoder passwordEncoder) {
         this.userMapper = userMapper;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -34,9 +39,15 @@ public class UserServiceImpl implements  UserService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
 
-        if (!user.getPassword().equals(password)) {
+        boolean matches = passwordEncoder.matches(password, user.getPassword());
+
+        if (!matches) {
             throw new RuntimeException("Invalid password");
         }
+
+//        if (!user.getPassword().equals(password)) {
+//            throw new RuntimeException("Invalid password");
+//        }
 
         session.setAttribute("USER_ID", user.getId());
         session.setAttribute("USER_ROLE", user.getRole());
