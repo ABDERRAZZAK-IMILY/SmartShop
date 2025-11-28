@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 
 @Data @Builder @AllArgsConstructor @NoArgsConstructor
 public class PaymentDtoRequest {
-    @NotNull(message = "L'ID de la commande est obligatoire")
+    @NotNull(message = "Id is required")
     private Long orderId;
 
-    @Positive(message = "Le montant doit être positif")
+    @Positive(message = "amount must be positive")
     private double amount;
 
-    @NotNull(message = "Le type de paiement est obligatoire")
+    @NotNull(message = "payment type is required")
     private PaymentType type;
 }
