@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 
 @Data @Builder @AllArgsConstructor @NoArgsConstructor
 public class OrderItemDtoRequest {
-    @NotNull(message = "L'ID du produit est obligatoire")
+    @NotNull(message = "id is required")
     private Long productId;
 
-    @Min(value = 1, message = "La quantité doit être au moins 1")
+    @Min(value = 1, message = "quantity must be at least 1")
     private int quantity;
 }
