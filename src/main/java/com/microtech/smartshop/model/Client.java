@@ -29,8 +29,8 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private CustomerTier tier = CustomerTier.BASIC;
 
-    private double totalSpent = 0.0;
-    private int totalOrders = 0;
+    private double totalSpent;
+    private int totalOrders;
 
 
     private LocalDateTime FirstOrderDate;
